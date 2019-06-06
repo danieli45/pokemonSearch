@@ -1,0 +1,53 @@
+.button-search
+{
+    background: white;
+    border-color: #FFde00;
+    border-style: solid;
+    border-width: medium;
+	padding: 10px 20px 10px 20px;
+	border-radius: 10px;
+    color: #111;
+    margin-left: auto;
+    margin-right: 25px;
+    font-size: 15px;
+
+}
+img.pokemonImage
+{
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.App {
+    text-align: center;
+  }
+  
+.p-userinfo{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 30px;
+    font-weight: 300;
+}
+
+.p-extrainfo
+{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 25px;
+    font-weight: 300;
+}
+.input-box
+{
+    background: white;
+	padding: 10px 20px 10px 20px;
+	border-color: #FFde00;
+    border-style: solid;
+    border-width: medium;
+	border-radius: 3px;
+    color: #111;
+    margin-left: auto;
+    margin-right: 25px;
+    font-size: 15px;
+}
