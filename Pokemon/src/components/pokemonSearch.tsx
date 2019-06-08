@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import User from "../interface/User.interface";
 
 //Creating interface for SearchState and Pokemon
-interface SearchState {
+export interface SearchState {
     error: boolean;
     pokemon: Pokemon;
+    count: number;
 }
 
 //Pokemon information type
@@ -30,7 +31,8 @@ export class pokemonSearch extends Component<User, SearchState>
         //Initializing error and pokemon
         this.state = {
             error: false,
-            pokemon: null
+            pokemon: null,
+            count: 0
         };
         //creating the React Reference.
         this.pokemonRef = React.createRef();
@@ -55,16 +57,17 @@ export class pokemonSearch extends Component<User, SearchState>
           }
           res.json().then((data) => {
             //Getting information from the pokemon API and storing them into their respective variables
-            
             this.setState({
               error: false, 
+              count: this.state.count + 1,
               pokemon: {
                 name: data.name, 
                 abilities: data.abilities.length, 
                 experience: data.base_experience, 
                 imageURL: data.sprites.front_default, 
                 weight: data.weight
-              }
+              },
+              
             });
           });
         });
@@ -75,7 +78,7 @@ export class pokemonSearch extends Component<User, SearchState>
         //retrieving values
         ///destructuring objects
 
-        const { name: userName, numberOfPokemons } = this.props; 
+        const { name: userName, numberPokemons } = this.props; 
         const { error, pokemon } = this.state;
 
         
@@ -84,9 +87,9 @@ export class pokemonSearch extends Component<User, SearchState>
         let resultMarkup;
         
             //If error is true, prints message to the user
-           if(error)
+           if(error && this.state.count == 0)
             {
-                resultMarkup = <p>Sorry, the pokemon was not found :(, please check for typos!</p>
+                resultMarkup = <p className="error-m">Sorry, the pokemon was not found :(! <br/> You have 0 pokemons found!</p>
             }
             //if erorr is false it will print the current state of the pokemon interface.
             else if (this.state.pokemon)
@@ -101,6 +104,7 @@ export class pokemonSearch extends Component<User, SearchState>
                 {pokemon.name} has {pokemon.abilities} abilities and {pokemon.experience} with base experience!
                 </p>
                 <p>The weight of {pokemon.name} is {pokemon.weight}</p>
+                <p>You have found <span style={{fontWeight:"bold"}}>{this.state.count}!</span></p>
             </div>
                 );
             }
@@ -111,7 +115,7 @@ export class pokemonSearch extends Component<User, SearchState>
                 <div>
                   <p className="p-userinfo">
                    Hello, {userName}{' '}!</p>
-                    <p className="p-extrainfo">{numberOfPokemons && <span> You have catched {numberOfPokemons} pokemons!</span>}</p>
+                    <p className="p-extrainfo">{numberPokemons && <span> There are {numberPokemons} pokemons!</span>}</p>
                   
                     <input className="input-box" placeholder="Pokemon name" type= "text" ref={this.pokemonRef} required></input>
                 <button className = "button-search" onClick={this.onSearchClick}>Search!</button>

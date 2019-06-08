@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <PokemonSearch name="Daniel Chavez" numberOfPokemons={100} />
+        <PokemonSearch name="Daniel Chavez" numberPokemons={807} />
       </div>
     );
   }
